@@ -14,7 +14,7 @@ let username;
 let sessionId;
 let socket;
 
-const baseUrl = 'http://192.168.0.102:8080/api/';
+const baseUrl = 'https://websocket-chat-wbb4.onrender.com/api/';
 
 const connect = (event) => {
     username = document.querySelector('#username').value.trim();
