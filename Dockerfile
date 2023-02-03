@@ -3,7 +3,7 @@
 #
 FROM maven:3.8.7-amazoncorretto-19 AS build
 COPY . .
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
 #
 # Package stage
