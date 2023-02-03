@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>WebSocket Chat App</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body class="bg-dark text-light">
+        <div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <div class="border-end border-secondary bg-dark" id="sidebar-wrapper">
+                <div class="sidebar-heading border-bottom border-secondary bg-dark">Online Users</div>
+                <div class="list-group list-group-flush" id="user-list">
+                    <a class="list-group-item p-3 text-light">Please connect to see online user list.</a>
+                </div>
+            </div>
+            <!-- Page content wrapper-->
+            <div id="page-content-wrapper">
+                <!-- Page content-->
+                <div class="container-fluid">
+                    <div id="chat-card" class="card bg-dark" style="height: 100vh;">
+                        <div class="card-header">
+                            <div class="bd-highlight">
+                                <div class="chat-summary">
+                                    <span>
+                                        <button class="btn btn-dark shadow-none" id="sidebarToggle">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                                                <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+                                              </svg>
+                                        </button>
+                                        Websocket Chat App
+                                        <button class="btn btn-danger shadow-none float-end d-none" id="disconnect">Disconnect</button>
+                                        <div id="status" class="login"></div>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="login" class="square-box d-flex justify-content-center align-items-center w-100" style="padding-top: 50px;">
+                                <form class="row g-2" id="login-form" name="login-form">
+                                    <h4>Connect</h4>
+                                    <input id="username" type="text" class="form-control all-input" autocomplete="off" placeholder="username"/>
+                                    <button type="submit" class="btn btn-primary">Enter</button>
+                                </form>
+                            </div>
+                            <div id="chat">
+        
+                            </div>
+                        </div>
+        
+                        <form id="message-controls" name="message-controls" class="card-footer d-none">
+                            <div class="input-group">
+                                <textarea id="message" class="form-control all-input bg-dark text-light" placeholder="Type your message here..."></textarea>
+                                <button id="send" type="submit" class="btn btn-dark shadow-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
+                                        <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    </body>
+</html>
