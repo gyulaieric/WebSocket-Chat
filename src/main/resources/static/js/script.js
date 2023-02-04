@@ -14,8 +14,7 @@ let username;
 let sessionId;
 let socket;
 
-// const baseUrl = 'https://websocket-chat-wbb4.onrender.com/api/';
-const baseUrl = 'http://192.168.0.105:8080/api/';
+const baseUrl = 'https://websocket-chat-wbb4.onrender.com/api/';
 
 const connect = (event) => {
     username = document.querySelector('#username').value.trim();
@@ -68,6 +67,9 @@ const disconnect = (event) => {
         stompClient.send('/app/chat.send', {}, JSON.stringify({sender: username, type: 'DISCONNECT'}));
         stompClient.disconnect();
     });
+
+    const disconnectButton = document.querySelector('#disconnect');
+    disconnectButton.classList.add('d-none');
 
     const list = document.querySelector('#user-list');
     list.innerHTML = '<a class="list-group-item p-3 text-light">Please connect to see online user list.</a>';
