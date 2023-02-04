@@ -14,7 +14,8 @@ let username;
 let sessionId;
 let socket;
 
-const baseUrl = 'https://websocket-chat-wbb4.onrender.com/api/';
+// const baseUrl = 'https://websocket-chat-wbb4.onrender.com/api/';
+const baseUrl = 'http://192.168.0.105:8080/api/';
 
 const connect = (event) => {
     username = document.querySelector('#username').value.trim();
@@ -42,7 +43,9 @@ const onConnected = () => {
 
     fetch(request).then((response) => response.json()).then((data) => {
         data.forEach(message => {
-            loadMessage(message);
+            if (message.type != 'CONNECT' && message.type != 'DISCONNECT') {
+                loadMessage(message);
+            }
         });
     }).then(() => {
         stompClient.subscribe('/topic/public', onMessageRecieved);
@@ -126,18 +129,18 @@ function loadMessage(message) {
     if (message.type === 'CONNECT') {
         flexBox.classList.replace('justify-content-start', 'justify-content-center');
         messageElement.classList.add('event-message');
-        message.content = message.sender + ' connected';
+        message.content = `<b>${message.sender}</b> connected`;
     }
 
     else if (message.type === 'DISCONNECT') {
         flexBox.classList.replace('justify-content-start', 'justify-content-center');
         messageElement.classList.add('event-message');
-        message.content = message.sender + ' disconnected';
+        message.content = `<b>${message.sender}</b> disconnected`;
     }
 
     else {
         messageElement.classList.add('chat-message');
-        message.content = `${message.sender}: ${message.content}`;
+        message.content = `<b>${message.sender}</b>: ${message.content}`;
     }
 
     messageElement.innerHTML = message.content;
@@ -182,6 +185,19 @@ textarea.addEventListener('keydown', (e) => {
         document.querySelector('#send').click();
     }
 });
+
+window.addEventListener('beforeunload', function (event) {
+    const url = baseUrl + 'users/delete-user/' + sessionId;
+
+    const request = new Request(url, {method: 'DELETE'});
+
+    fetch(request).then(() => {
+        stompClient.send('/app/chat.send', {}, JSON.stringify({sender: username, type: 'DISCONNECT'}));
+        stompClient.disconnect();
+    });
+
+    event.returnValue = null;
+})
 
 window.addEventListener('DOMContentLoaded', event => {
 
