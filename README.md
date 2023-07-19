@@ -3,7 +3,6 @@
 WebSocket Chat App is a real-time chat application built using Spring Boot for the backend and HTML, CSS, and JavaScript for the frontend. This application allows users to communicate with each other in real-time using websockets.
 
 ![WebSocketChatApp](https://github.com/gyulaieric/WebSocket-Chat/assets/47032470/a7870858-82b0-4dbc-a73e-a985a9a732e9)
-)
 
 ## Features
 
@@ -21,4 +20,5 @@ WebSocket Chat App is a real-time chat application built using Spring Boot for t
 - WebSocket
 - HTML
 - CSS
+- Bootstrap
 - JavaScript
